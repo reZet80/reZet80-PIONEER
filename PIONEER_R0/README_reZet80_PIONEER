@@ -1,0 +1,54 @@
+
+reZet80 PIONEER README [last modified: 2021-06-06]
+--------------------------------------------------
+
+This README describes the reZet80 PIONEER system.
+
+reZet80 stands for "Reset me back to the 80s with the Z80".
+
+The reZet80 PIONEER is my version of a computer system that could have been
+built in the late 70s.
+It is built from scratch and not a copy of any other Z80 system.
+
+It includes a mainboard with power supply sockets, on/off switch,
+reset switch, memory and I/O decoding circuitry and a Z80 CPU card, a memory
+card (ROM and RAM), a display, a keypad and of course the monitor software.
+The system will be enhanced in the future.
+
+The reZet80 PIONEER is a stand-alone system without a connection to a host.
+All peripherals are connected directly to the Z80 and no other processor like
+for example AVR, PIC or ARM will be used, neither as a bootloader nor to
+attach peripherals to.
+
+This project involves hardware and software development.
+I plan to develop and build every single pcb trace and every single bit
+of machine code by myself from scratch.
+DIYIB: Doing it yourself is believing!
+And WYDYIWYG: What you do yourself is what you get!
+
+The Zilog Z80 was introduced in 1976 in NMOS technology.
+At the same time static memory chips like the 2125 (1K x 1 bit) and the
+2114 (1K x 4 bit) were already available but were very expensive so memory
+was a scarce resource.
+Dynamic RAM chips were more affordable back then. DRAM chips with a single
++5V power supply like Intel's 2118 were available in 1979.
+UV erasable 2 KiB PROMs with a single +5V power supply like Intel's 2716
+were already available by 1977.
+TI's TIL311 dates from 1972.
+General Instrument's AY-3-8910 Programmable Sound Generator (PSG) was
+released in 1978.
+
+In its basic configuration the reZet80 PIONEER is equipped with 1 KiB of
+static RAM and 2 KiB of ROM containing a very simple debug monitor.
+The maximum amount of onboard RAM and ROM are 2 KiB and 4 KiB, respectively.
+The ROM can be upgraded to 14 KiB. RAM can be extended to 12 KiB and further
+increased by the addition of dynamic RAM.
+
+Input and output are implemented by a 20-key keypad and a 6-digit display
+(either 7-segment LEDs or TIL311 LEDs that are more costly).
+
+An expansion bus, a video card, a memory cartridge, a sound card based on
+the AY-3-8910 chip and a joystick are planned to be added later.
+Plans for the future also include to enhance the debug monitor and to provide
+a text adventure, at least one arcade clone, an assembler, a disassembler,
+a debugger and a C compiler.
