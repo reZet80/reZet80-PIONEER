@@ -1,0 +1,23 @@
+reZet80 README
+--------------
+
+Welcome to reZet80!
+reZet80 stands for "Reset me back to the 80s with the Z80".
+
+reZet80 features a set of retro projects to develop computing and
+arcade systems that resemble the Z80 machines of the late 70s and early 80s.
+All systems are built from scratch and not copies of any other Z80 system.
+The development process includes hardware design and low-level software
+programming in Assembler.
+I started reZet80 back in 1996.
+
+
+The reZet80 PIONEER resembles the computer systems of the late 70s.
+
+reZet80 PIONEER directory hierarchy:
+|- PIONEER_R0 : Release 0 (first release)
+|--  doc      : technical specifications
+|--  pix      : pictures
+|--  rom      : ROM images and ROM listings
+|--  sch      : schematics
+|--  src      : source code
