@@ -1,0 +1,47 @@
+
+reZet80 CPU bus specs R2 [last modified: 2021-04-10]
+----------------------------------------------------
+
+The CPU bus is a system-wide bus that connects all 40 CPU pins.
+Some signals are optional and can be used for user-defined purposes.
+
+CPUB01: D7
+CPUB02: D6
+CPUB03: D5
+CPUB04: D4
+CPUB05: D3
+CPUB06: D2
+CPUB07: D1
+CPUB08: D0
+CPUB09: /IORQ
+CPUB10: /MREQ
+CPUB11: /HALT   | user-defined
+CPUB12: /NMI    | user-defined
+CPUB13: /INT    | user-defined
+CPUB14: /RD
+CPUB15: /WR
+CPUB16: /BUSACK | user-defined
+CPUB17: /WAIT   | user-defined
+CPUB18: /BUSREQ | user-defined
+CPUB19: /RESET
+CPUB20: /M1
+CPUB21: /RFSH   | user-defined
+CPUB22: CLK
+CPUB23: GND
+CPUB24: +5V
+CPUB25: A0
+CPUB26: A1
+CPUB27: A2
+CPUB28: A3
+CPUB29: A4
+CPUB30: A5
+CPUB31: A6
+CPUB32: A7
+CPUB33: A8
+CPUB34: A9
+CPUB35: A10
+CPUB36: A11
+CPUB37: A12
+CPUB38: A13
+CPUB39: A14
+CPUB40: A15

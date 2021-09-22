@@ -1,0 +1,35 @@
+
+reZet80 CPU card specs R2 [last modified: 2021-06-03]
+-----------------------------------------------------
+
+The Z80 is the heart of the system and the CPU card is quite simple.
+It connects all 40 CPU pins to the bus.
+
+The bus signals BUSACK, BUSREQ, HALT, INT, NMI, RFSH and WAIT are optional
+and can be used for user-defined purposes.
+
+Check the reZet80 CPU bus specs R2 (specs_CPU_bus).
+
+6 resistors 4k7 are used to pull the signals BUSREQ, CLK, INT, NMI, RESET
+and WAIT high.
+
+Additionally an oscillator is available on the card.
+With the help of a jumper 2 different clock speeds and 3 configurations
+are possible:
+- CPU card oscillator for the entire system
+- An external oscillator for the entire system
+- CPU card oscillator only for the CPU and an external oscillator for the
+rest of the system
+
+This card is usable for both NMOS and CMOS Z80 CPUs.
+
+Bill of materials:
+- reZet80 CPU R2 PCB
+- 40-pin right-angled male connector
+- DIP-40 socket (or ZIF-40 socket in order to easily exchange CPUs, optional)
+- DIP-8 or DIP-14 socket (depending on oscillator size, optional)
+- Z80 CPU (NMOS or CMOS)
+- oscillator (DIP-8 or DIP-14)
+- 6x resistor 4k7 (or 10k)
+- 3x capacitor 100 nF
+- 8x jumper wire (optional)
