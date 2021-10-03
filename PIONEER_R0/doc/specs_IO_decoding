@@ -1,0 +1,26 @@
+
+reZet80 PIONEER I/O decoding specs [last modified: 2021-08-07]
+--------------------------------------------------------------
+
+The first 128 I/O ports (00-7F) are reserved for internal reZet80 use.
+They are divided into 8 regions of 16 ports each:
+00-0F, 10-1F, 20-2F, 30-3F, 40-4F, 50-5F, 60-6F and 70-7F.
+These 8 regions will be further subdivided on demand.
+The remaining 128 I/O ports are free to use: 80-FF.
+
+The 74LS138 demultiplexer provides the following low-active signals:
+- /IOSEL_0X (reserved for future use)
+- /IOSEL_1X (reserved for future use)
+- /IOSEL_2X (reserved for future use)
+- /IOSEL_3X (reserved for future use)
+- /IOSEL_4X (reserved for future use)
+- /IOSEL_5X (alternative keypad)
+- /IOSEL_6X (keypad or alternative keypad)
+- /IOSEL_7X (6-digit display, TIL311 or 7-segment)
+
+All I/O port addresses are given in hexadecimal notation.
+
+Bill of materials:
+- DIP-16 socket
+- 74LS138 demultiplexer
+- capacitor 100 nF
