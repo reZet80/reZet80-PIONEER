@@ -1,0 +1,27 @@
+
+reZet80 4 KiB ROM 2 KiB RAM card specs [last modified: 2021-06-25]
+------------------------------------------------------------------
+
+Two 2 KiB ROM chips produce an amount of 4 KiB ROM, the maximum amount of
+ROM available on the card.
+The minimal ROM configuration is one chip of 2 KiB.
+Populate U5 for ROM from 0000 to 07FF first.
+Populate U6 for ROM from 0800 to 0FFF.
+
+Two 1024x4 SRAM chips produce an amount of 1 KiB RAM.
+This is the minimal RAM configuration.
+Four SRAM chips can be installed in total providing a maximum of 2 KiB RAM.
+Populate U1 and U3 for RAM from 3C00 to 3FFF first.
+Populate U2 and U4 for RAM from 3800 to 3BFF.
+
+EEPROM chips can also be used although they were not available in the 70s
+(just in case an easier handling is more important than a 70s feeling).
+
+Bill of materials:
+- reZet80 PIONEER 4 KiB ROM 2 KiB RAM card PCB
+- 40-pin right-angled male connector
+- 2x (or 4x) DIP-18 socket
+- 1x (or 2x) DIP-24 socket
+- 2x (or 4x) 2114 SRAM (or compatible 1024x4 chips)
+- 1x (or 2x) 2716 EPROM (or compatible 2 KiB chips)
+- 3x (or 6x) capacitor 100 nF
