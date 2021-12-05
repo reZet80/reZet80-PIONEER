@@ -1,0 +1,19 @@
+
+reZet80 6-digit display card specs [last modified: 2021-11-25]
+--------------------------------------------------------------
+
+This is the 6-digit display card for the DISPLAY bus (see specs_DISPLAY_bus).
+
+It displays 6 hexadecimal numbers with TIL311 hexadecimal LED displays.
+Please note that the decimal points (DP) are not used in the current version.
+
+The card uses one I/O port in the 8-bit I/O space (see specs_IO_decoding).
+
+Bill of materials:
+- reZet80 PIONEER 6-digit TIL311 display card PCB
+- 10-pin right-angled male connector
+- 6x DIP-14 socket (optional)
+- DIP-16 socket (optional)
+- 6x TIL311 hexadecimal display
+- 74LS138 demultiplexer
+- 7x capacitor 100 nF

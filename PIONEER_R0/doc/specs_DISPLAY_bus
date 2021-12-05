@@ -1,0 +1,21 @@
+
+reZet80 DISPLAY bus specs [last modified: 2021-04-04]
+-----------------------------------------------------
+
+This specification applies to both display cards, the one based on the TIL311
+hexadecimal display and the alternative one built with 7-segment LED displays.
+
+DISPB01: D7 (not used for TIL311 display)
+DISPB02: D6 (not used for TIL311 display)
+DISPB03: D5 (not used for TIL311 display)
+DISPB04: D4 (not used for TIL311 display)
+DISPB05: D3
+DISPB06: D2
+DISPB07: D1
+DISPB08: D0
+DISPB09: /IOSEL_7X
+DISPB10: A8
+DISPB11: A9
+DISPB12: A10
+DISPB13: GND
+DISPB14: +5V
