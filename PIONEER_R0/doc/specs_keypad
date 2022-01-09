@@ -1,0 +1,31 @@
+
+reZet80 keypad specs [last modified: 2022-01-09]
+------------------------------------------------
+
+This is the 20-key keypad for the KEYPAD bus (see specs_KEYPAD_bus).
+
+The keys '0' to 'F' plus 4 special keys (ENTER, BACK, ESC and SHIFT) are
+connected via the 74C923 chip.
+This CMOS chip was not available in the 70s but it is LPTTL compatible and
+simplifies the circuit because it supports key debouncing and interrupts.
+In the reZet80 PIONEER it triggers /NMI once a key is pressed. I use the NMI
+(non-maskable interrupt) because it has the fastest interrupt response time.
+
+The card uses one I/O port in the 8-bit I/O space (see specs_IO_decoding).
+
+An alternative circuit without the 74C923 can be constructed using LSTTL
+chips (see specs_keypad2). But the circuit requires polling the keys.
+
+Bill of materials:
+- reZet80 PIONEER keypad card PCB
+- reZet80 PIONEER 20-key keypad PCB
+- 10-pin right-angled male connector
+- 2x 10-pin male socket
+- 10-wire cable female/female
+- DIP-14 socket
+- DIP-20 socket
+- 74HC04 inverter
+- 74C923 key encoder
+- 20 key switches
+- 3x capacitor 100 nF
+- capacitor 1 uF

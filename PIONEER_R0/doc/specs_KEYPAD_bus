@@ -1,0 +1,17 @@
+
+reZet80 KEYPAD bus specs [last modified: 2021-10-25]
+----------------------------------------------------
+
+This specification applies to both keypad cards, the one based on the 74C923
+key encoder and the alternative one built with regular LSTTL chips.
+
+KEYB01: D4
+KEYB02: D3
+KEYB03: D2
+KEYB04: D1
+KEYB05: D0
+KEYB06: /IOSEL_5X
+KEYB07: /IOSEL_6X
+KEYB08: /NMI
+KEYB09: GND
+KEYB10: +5V
