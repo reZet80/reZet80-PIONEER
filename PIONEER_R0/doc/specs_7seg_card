@@ -1,0 +1,27 @@
+
+reZet80 6-digit display card specs [last modified: 2021-04-06]
+--------------------------------------------------------------
+
+This is the 6-digit display card for the DISPLAY bus (see specs_DISPLAY_bus).
+
+It displays 6 hexadecimal numbers with 7-segment LED displays.
+Please note that the decimal point (DP) is wired in hardware but not enabled
+in software in the current version.
+The card has been designed for 7mm common cathode LED displays.
+Provisions have been made to accomodate all LED displays up to a height
+of 17,78 mm (distance between pins) but you'll have to wire them yourself on
+the card.
+It's also possible to use common anode displays but hardware and software
+need to be adapted.
+
+The card uses one I/O port in the 8-bit I/O space (see specs_IO_decoding).
+
+Bill of materials:
+- reZet80 PIONEER 6-digit 7-segment display card PCB
+- 14-pin right-angled male connector
+- DIP-16 socket
+- 6x DIP-20 socket
+- 74LS138 demultiplexer
+- 6x 74LS374 8-bit flip-flop
+- 6x 1-digit common cathode LED display (Vishay 7mm TDS series)
+- 7x capacitor 100 nF
