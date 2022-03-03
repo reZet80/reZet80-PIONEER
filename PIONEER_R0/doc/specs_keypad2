@@ -1,0 +1,26 @@
+
+reZet80 keypad specs [last modified: 2021-10-25]
+------------------------------------------------
+
+This is the alternative 20-key keypad for the KEYPAD bus
+(see specs_KEYPAD_bus).
+
+The keys '0' to 'F' plus 4 special keys (ENTER, BACK, ESC and SHIFT) are
+connected via LSTTL chips.
+
+The card uses two I/O ports in the 8-bit I/O space (see specs_IO_decoding).
+It could also be implemented to use only one I/O port but it would require
+one extra demultiplexer and currently we have plenty of free I/O ports.
+
+Bill of materials:
+- reZet80 PIONEER alternative keypad card PCB
+- reZet80 PIONEER 20-key keypad PCB
+- 10-pin right-angled male connector
+- 2x 10-pin male socket
+- 10-wire cable female/female
+- 2x DIP-20 socket
+- 74LS244 8-bit buffer
+- 74LS374 8-bit flip-flop (or 74LS574)
+- 20 key switches
+- 4x resistor 4k7
+- 2x capacitor 100 nF
