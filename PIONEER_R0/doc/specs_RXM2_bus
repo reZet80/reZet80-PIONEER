@@ -1,0 +1,51 @@
+
+reZet80 RXM2 bus specs [last modified: 2021-06-26]
+-------------------------------------------------
+
+The RXM2 bus is a bus specification for the "10 KiB ROM card" and the
+"10 KiB RAM card".
+It's a modification of the CPU bus specification R2 that replaces the unused
+signals /IORQ, /MREQ, /HALT, /NMI and /INT with the chip select signals that
+are necessary to address either ROM or RAM from 1000 to 37FF.
+Other CPU signals are connected but also unused on the RXM2 bus (see below).
+
+RXM2B01: D7
+RXM2B02: D6
+RXM2B03: D5
+RXM2B04: D4
+RXM2B05: D3
+RXM2B06: D2
+RXM2B07: D1
+RXM2B08: D0
+RXM2B09: /RXMCS_1000-17FF
+RXM2B10: /RXMCS_1800-1FFF
+RXM2B11: /RXMCS_2000-27FF
+RXM2B12: /RXMCS_2800-2FFF
+RXM2B13: /RXMCS_3000-37FF
+RXM2B14: /RD
+RXM2B15: /WR
+RXM2B16: /BUSACK (not used)
+RXM2B17: /WAIT (not used)
+RXM2B18: /BUSREQ (not used)
+RXM2B19: /RESET (not used)
+RXM2B20: /M1 (not used)
+RXM2B21: /RFSH (not used)
+RXM2B22: CLK (not used)
+RXM2B23: GND
+RXM2B24: +5V
+RXM2B25: A0
+RXM2B26: A1
+RXM2B27: A2
+RXM2B28: A3
+RXM2B29: A4
+RXM2B30: A5
+RXM2B31: A6
+RXM2B32: A7
+RXM2B33: A8
+RXM2B34: A9
+RXM2B35: A10
+RXM2B36: A11 (not used)
+RXM2B37: A12 (not used)
+RXM2B38: A13 (not used)
+RXM2B39: A14 (not used)
+RXM2B40: A15 (not used)
