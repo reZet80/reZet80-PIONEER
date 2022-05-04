@@ -1,0 +1,49 @@
+
+reZet80 RAM bus specs [last modified: 2021-11-29]
+-------------------------------------------------
+
+The RAM bus is a bus specification for the "1 KiB RAM card".
+It's a modification of the CPU bus specification R2 that replaces the unused
+signal /MREQ, with the chip select signal that is necessary to address RAM.
+Other CPU signals are connected but also unused on the RAM bus (see below).
+
+RXMB01: D7
+RXMB02: D6
+RXMB03: D5
+RXMB04: D4
+RXMB05: D3
+RXMB06: D2
+RXMB07: D1
+RXMB08: D0
+RXMB09: /IORQ (not used)
+RXMB10: /RAMCS
+RXMB11: /HALT (not used)
+RXMB12: /NMI (not used)
+RXMB13: /INT (not used)
+RXMB14: /RD
+RXMB15: /WR
+RXMB16: /BUSACK (not used)
+RXMB17: /WAIT (not used)
+RXMB18: /BUSREQ (not used)
+RXMB19: /RESET (not used)
+RXMB20: /M1 (not used)
+RXMB21: /RFSH (not used)
+RXMB22: CLK (not used)
+RXMB23: GND
+RXMB24: +5V
+RXMB25: A0
+RXMB26: A1
+RXMB27: A2
+RXMB28: A3
+RXMB29: A4
+RXMB30: A5
+RXMB31: A6
+RXMB32: A7
+RXMB33: A8
+RXMB34: A9
+RXMB35: A10 (not used)
+RXMB36: A11 (not used)
+RXMB37: A12 (not used)
+RXMB38: A13 (not used)
+RXMB39: A14 (not used)
+RXMB40: A15 (not used)
