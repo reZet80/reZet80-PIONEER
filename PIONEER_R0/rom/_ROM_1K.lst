@@ -1,0 +1,265 @@
+# File _pioneer.asm
+0000			;=========================================================================== 
+0000			; reZet80 - Z80-based retrocomputing and retrogaming 
+0000			; (c) copyright 2016-2021 Adrian H. Hilgarth (all rights reserved) 
+0000			; reZet80 PIONEER (_pioneer.asm) [last modified: 2021-06-25] 
+0000			; indentation setting: tab size = 8 
+0000			;=========================================================================== 
+0000			; hardware configuration:		; default display is TIL311 
+0000			_7SEG:		equ 0			; 7-segment LED display used instead 
+0000			_74C923:	equ 1			; default keypad 
+0000			_KEYPAD2:	equ 0			; alternative keypad 
+0000			_RAM_1K:	equ 1			; 1 KiB main RAM 
+0000			_RAM_2K:	equ 0			; 2 KiB main RAM 
+0000			;--------------------------------------------------------------------------- 
+0000			; I/O ports: 
+0000			_IO_KEYB2:	equ 50h			; alternative keypad 
+0000			_IO_KEYB:	equ 60h			; keypad and alternative keypad 
+0000			_IO_DISP:	equ 70h			; display 
+0000			;--------------------------------------------------------------------------- 
+0000			; memory:				; 2 KiB ROM (0000-07FF) 
+0000			if _RAM_1K				; 1 KiB RAM (3C00-3FFF) 
+0000			_buffer:	equ 3c00h		; 6 hexadecimals (H1-H6) to display 
+0000			endif					; 3C00-3C05 
+0000			if _RAM_2K				; 2 KiB RAM (3800-3FFF) 
+0000			_buffer:	equ 3800h		; 6 hexadecimals (H1-H6) to display 
+0000			endif					; 3800-3805 
+0000			;--------------------------------------------------------------------------- 
+0000			; start of Z80 execution - maskable interrupts disabled by hardware reset 
+0000 f3					di			; needed for soft reset 
+0001 3e ff				ld a, 0ffh 
+0003 ed 47				ld i, a			; init i 
+0005 c3 7f 00				jp _init		; initialization 
+0008			;--------------------------------------------------------------------------- 
+0008 0xff...				ds 08h, 0ffh		; rst 08h 
+0010 0xff...				ds 08h, 0ffh		; rst 10h 
+0018 0xff...				ds 08h, 0ffh		; rst 18h 
+0020 0xff...				ds 08h, 0ffh		; rst 20h 
+0028 0xff...				ds 08h, 0ffh		; rst 28h 
+0030 0xff...				ds 08h, 0ffh		; rst 30h 
+0038			;--------------------------------------------------------------------------- 
+0038 ed 4d		_isr:		reti			; ISR starts at 0038 
+003a 0xff...				ds 2ch, 0ffh		; fill up 
+0066			;--------------------------------------------------------------------------- 
+0066			if _74C923 
+0066			; read key code from keypad encoder 
+0066			; a': temp storage 
+0066			; i : key code 
+0066 08			_nmi:		ex af, af'		; NMISR starts at 0066 
+0067 db 60				in a, (_IO_KEYB)	; get key code 
+0069 e6 1f				and 1fh			; 5-bit key code 
+006b ed 47				ld i, a			; always overwrite last key 
+006d 08					ex af, af' 
+006e ed 45				retn 
+0070			endif 
+0070			if _KEYPAD2 
+0070			_nmi:		retn			; NMISR starts at 0066 
+0070			endif 
+0070			;--------------------------------------------------------------------------- 
+0070			; convert hexadecimal number to 2 digits and save 
+0070			;  a: hexadecimal number (input) 
+0070			;  c: temp storage 
+0070			; hl: ptr to display buffer [updated to point to next digit] 
+0070 4f			_todig:		ld c, a 
+0071 0f					rrca 
+0072 0f					rrca 
+0073 0f					rrca 
+0074 0f					rrca			; bits 4-7 
+0075 e6 0f				and 0fh 
+0077 77					ld (hl), a 
+0078 23					inc hl 
+0079 79					ld a, c 
+007a e6 0f				and 0fh			; bits 0-3 
+007c 77					ld (hl), a 
+007d 23					inc hl 
+007e c9					ret 
+007f			;--------------------------------------------------------------------------- 
+007f ed 56		_init:		im 1			; simple interrupt mode 1 
+0081 47					ld b, a			; b=ffh 
+0082 21 00 40				ld hl, 4000h		; determine location and amount of RAM 
+0085 54					ld d, h			; save for later use 
+0086 f9					ld sp, hl		; stack at top of RAM 
+0087 2b			_init1:		dec hl			; start from 3FFF 
+0088 3e 55				ld a, 55h		; 01010101b 
+008a 77					ld (hl), a 
+008b be					cp (hl) 
+008c 20 05				jr nz, _init2 
+008e 2f					cpl			; 10101010b = aah 
+008f 77					ld (hl), a 
+0090 be					cp (hl) 
+0091 28 f4				jr z, _init1 
+0093 23			_init2:		inc hl			; no more RAM found 
+0094 7c					ld a, h 
+0095 cd 70 00				call _todig		; display start of RAM (H1 & H2) 
+0098 af					xor a			; 00h (H3 & H4) 
+0099 cd 70 00				call _todig 
+009c 7a					ld a, d			; 40h 
+009d 94					sub h			; assume it's on 256-byte boundary 
+009e 0f					rrca 
+009f 0f					rrca			; in KiB 
+00a0 e6 0f				and 0fh 
+00a2 cd 70 00				call _todig		; display amount of RAM (H5 & H6) 
+00a5			;--------------------------------------------------------------------------- 
+00a5			include "_demon.asm"			; no jump/call so include first 
+00a5			;=========================================================================== 
+00a5			; reZet80 - Z80-based retrocomputing and retrogaming 
+00a5			; (c) copyright 2016-2021 Adrian H. Hilgarth (all rights reserved) 
+00a5			; reZet80 deMon = debug Monitor (_demon.asm) [last modified: 2021-07-17] 
+00a5			; indentation setting: tab size = 8 
+00a5			;=========================================================================== 
+00a5			; main deMon execution loop 
+00a5			;  a: temp storage 
+00a5			;  b: examine/modify mode (00h), normal entry mode (ffh) 
+00a5			;  c: temp storage 
+00a5			; de: memory location to examine/modify 
+00a5			; hl: ptr to display buffer 
+00a5			;  i: key code 
+00a5 21 00 3c		_loop:		ld hl, _buffer 
+00a8 cd 40 01		_loop0:		call _dout 
+00ab			if _74C923 
+00ab ed 57		_loop1:		ld a, i 
+00ad fe ff				cp 0ffh			; any key pressed ? 
+00af 28 fa				jr z, _loop1 
+00b1 4f					ld c, a 
+00b2 3e ff				ld a, 0ffh 
+00b4 ed 47				ld i, a			; mark key as read 
+00b6 79					ld a, c 
+00b7			endif 
+00b7			if _KEYPAD2 
+00b7			_loop1:		call _key_in 
+00b7					ld c, a 
+00b7			endif 
+00b7			;--------------------------------------------------------------------------- 
+00b7			; key codes: 
+00b7			; C (0ch)  D (0dh)  E (0eh)  F (0fh)  BACK  (13h) 
+00b7			; 8 (08h)  9 (09h)  A (0ah)  B (0bh)  ESC   (12h) 
+00b7			; 4 (04h)  5 (05h)  6 (06h)  7 (07h)  SHIFT (11h) 
+00b7			; 0 (00h)  1 (01h)  2 (02h)  3 (03h)  ENTER (10h) 
+00b7 fe 10				cp 10h			; 0-F ? 
+00b9 28 29				jr z, _eval		; ENTER ? 
+00bb 30 09				jr nc, _loop2		; > 10h ? 
+00bd 7d					ld a, l			; current buffer position 
+00be fe 06				cp 06h			; past H6 ? 
+00c0 28 e9				jr z, _loop1		; then ignore key 
+00c2 71					ld (hl), c		; save key 
+00c3 23					inc hl			; next display buffer position 
+00c4 18 e2				jr _loop0 
+00c6 fe 13		_loop2:		cp 13h			; BACK ? 
+00c8 20 0f				jr nz, _loop4 
+00ca 0e 00				ld c, 00h		; H1 
+00cc 78					ld a, b 
+00cd a7					and a 
+00ce 20 02				jr nz, _loop3		; not in examine/modify mode 
+00d0 0e 04				ld c, 04h		; H5 
+00d2 7d			_loop3:		ld a, l 
+00d3 b9					cp c			; reached H1/H5 ? 
+00d4 28 d5				jr z, _loop1		; then ignore BACK key 
+00d6 2b					dec hl			; delete last digit 
+00d7 18 d2				jr _loop1 
+00d9 fe 12		_loop4:		cp 12h			; ESC ? 
+00db 20 ce				jr nz, _loop1 
+00dd 78					ld a, b 
+00de a7					and a 
+00df 20 c4				jr nz, _loop		; not in examine/modify mode 
+00e1 05					dec b 			; back in normal entry mode 
+00e2 18 c1				jr _loop		; reset hl 
+00e4			;--------------------------------------------------------------------------- 
+00e4			; available commands: 
+00e4			; '0XXXX':  jump to specified address 
+00e4			; '1ZYYXX': output byte to 16-bit I/O port 
+00e4			; 'EXXXX':  examine/modify memory from specified address on 
+00e4 2e 00		_eval:		ld l, 00h		; H1 
+00e6 78					ld a, b 
+00e7 a7					and a 
+00e8 20 12				jr nz, _eval1		; not in examine/modify mode 
+00ea 2b					dec hl 
+00eb cd 32 01				call _addr		; de holds address from H1 H2 H3 H4 
+00ee d5					push de			; save de 
+00ef cd 36 01				call _addr_		; e holds value from H5 H6 
+00f2 7b					ld a, e 
+00f3 d1					pop de			; restore de 
+00f4 dd bd				db 0ddh, 0bdh		; cp ixl (check for a change) 
+00f6 28 01				jr z, _eval0		; value not changed 
+00f8 12					ld (de), a		; write new value to memory 
+00f9 13			_eval0:		inc de			; next memory location 
+00fa 18 21				jr _eval4 
+00fc 7e			_eval1:		ld a, (hl) 
+00fd a7					and a			; '0' ? 
+00fe 20 05				jr nz, _eval2 
+0100 cd 32 01				call _addr		; get address 
+0103 eb					ex de, hl 
+0104 e9					jp (hl)			; jump to address 
+0105 3d			_eval2:		dec a			; '1' ? 
+0106 20 0d				jr nz, _eval3 
+0108 c5					push bc			; save bc 
+0109 23					inc hl			; H2 
+010a 46					ld b, (hl)		; MSB of 16-bit I/O port ('Z') 
+010b cd 32 01				call _addr		; de holds value from H3 H4 H5 H6 
+010e 4a					ld c, d			; LSB of 16-bit I/O port ('YY') 
+010f 7b					ld a, e			; data to output ('XX') 
+0110 ed 79				out (c), a		; 4-bit b ('Z') but has to be 8 bits 
+0112 c1					pop bc			; restore bc 
+0113 18 96				jr _loop1		; should be '_loop' but would overwrite output to display 
+0115 fe 0d		_eval3:		cp 0dh			; 'E' ? 
+0117 20 92				jr nz, _loop1 
+0119 cd 32 01				call _addr		; get address 
+011c 04					inc b			; now in examine/modify mode 
+011d 2e 00		_eval4:		ld l, 00h		; H1 
+011f 7a					ld a, d 
+0120 cd 70 00				call _todig 
+0123 7b					ld a, e 
+0124 cd 70 00				call _todig 
+0127 1a					ld a, (de) 
+0128 dd 6f				db 0ddh, 6fh		; ld ixl, a (put old value in ixl) 
+012a cd 70 00				call _todig 
+012d 2b					dec hl 
+012e 2b					dec hl			; H5 
+012f c3 a8 00				jp _loop0 
+0132			;--------------------------------------------------------------------------- 
+0132			; calculate address out of 4 digits 
+0132			;  a: temp storage 
+0132			; de: address 
+0132			; hl: ptr to display buffer [updated to point to next digit] 
+0132 cd 36 01		_addr:		call _addr_ 
+0135 57					ld d, a 
+0136 23			_addr_:		inc hl 
+0137 7e					ld a, (hl) 
+0138 07					rlca 
+0139 07					rlca 
+013a 07					rlca 
+013b 07					rlca 
+013c 23					inc hl 
+013d b6					or (hl) 
+013e 5f					ld e, a 
+013f c9					ret 
+0140			;--------------------------------------------------------------------------- 
+0140			; update 6 display digits 
+0140			;  a : temp storage 
+0140			;  b': digit to display (6 -> 1) 
+0140			;  c': I/O address 
+0140			; de': pointer to display buffer 
+0140 d9			_dout:		exx 
+0141 01 70 06				ld bc, 0670h		; b=H1 c=_IO_DISP 
+0144 11 00 3c				ld de, _buffer 
+0147 1a			_dout_:		ld a, (de) 
+0148 13					inc de 
+0149			if _7SEG 
+0149					call _7seg 
+0149			endif 
+0149 ed 79				out (c), a		; 16-bit I/O 
+014b 10 fa				djnz _dout_ 
+014d d9					exx 
+014e c9					ret 
+014f			;=========================================================================== 
+# End of file _demon.asm
+014f			if _7SEG 
+014f			include "_7segment.asm" 
+014f			endif 
+014f			if _KEYPAD2 
+014f			include "_keypad2.asm" 
+014f			endif 
+014f			;--------------------------------------------------------------------------- 
+014f 0xff...				ds 0800h-$, 0ffh	; fill up (2 KiB) 
+0800			;=========================================================================== 
+# End of file _pioneer.asm
+0800
