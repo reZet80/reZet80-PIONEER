@@ -1,0 +1,73 @@
+
+reZet80 PIONEER deMon R0 README [last modified: 2021-09-02]
+-----------------------------------------------------------
+
+This is the reZet80 PIONEER deMon (debug Monitor) R0 (release 0).
+
+The deMon is a simple piece of software that boots up the reZet80 PIONEER and
+enables you to start simple tasks.
+
+After reset the start of RAM and the amount of RAM in KiB will be displayed
+(shall be "3C0001" for a 1 KiB and "380002" for a 2 KiB system).
+The first four hexadecimal digits specify the RAM start address and the last
+two digits show the amount of RAM in KiB.
+Please check the reZet80 PIONEER address decoding specs for details on the
+address space (see "specs_address_decoding").
+
+The deMon uses hexadecimal notation only so all commands and data have to be
+entered in hexadecimal.
+
+Hexadecimal digits that you enter are displayed from left to right.
+You can enter no more than 6 digits. All following digits are ignored.
+The BACK key moves you one digit to the left.
+Pressing ESC brings you back to the first display position.
+Please note that digits you have already entered will not be deleted but can
+be overwritten.
+Press ENTER when you have finished entering your command.
+
+The list of available commands:
+- "0XXXX": jump to specified address ("00000" for soft reset)
+- "1ZYYWW": output byte to 16-bit I/O port
+- "EXXXX": examine/modify memory from specified address on
+
+Please make sure that the address XXXX and the parameters WW, YY and Z you
+enter are valid because no plausibility checks are done in the deMon.
+
+In examine/modify mode you can examine the content of ROM and RAM but you
+can only modify RAM.
+The address you supplied and the value of that memory location is displayed.
+Entering "E0000" for example will display "0000F3" (F3 is the opcode of the
+"di" instruction that is the first instruction in the ROM at address 0000).
+Press ENTER to move to the next memory location. In our example "00013E" is
+then displayed. Press ENTER once more to see "0002FF" (3EFF is the instruction
+"ld a, ffh" that follows "di" in the ROM).
+You can change the content of a RAM address by entering a new value before
+pressing ENTER. As you type the new value is displayed replacing the old one.
+You can enter 2 digits at most (00-FF). All additional digits are ignored.
+Use the BACK key to correct your entry.
+ESC quits examine/modify mode and you are taken back to the first display
+position.
+
+Enter "167F00" to output "0" to the leftmost display position, "167F3F" for
+the 7-segment display. This is just an example to explain the output command.
+00 or 3F is the byte to output ("WW").
+7F ("YY") is the 8-bit I/O port. 70-7F can be used for the 6-digit display
+(see specs_IO_decoding).
+6 ("Z") is the leftmost display digit, 1 the rightmost.
+Usually one card uses one I/O port in the reZet80 PIONEER's 8-bit I/O space.
+Additionally a second 8-bit value is used to address one out of 256 possible
+I/O addresses per I/O port (1 to 6 for the display).
+The display will change to "067F00" after the command has been executed.
+Press ESC to restore the display to the command you have entered and move back
+to the first display position.
+
+The SHIFT key is not used for now.
+
+The code has been optimized for size and, if possible, for speed, too.
+It makes use of both register sets and the least significant half of "ix"
+(the undocumented "ixl" register). "ixh" and "iy" including "iyl" and "iyh"
+are not used in the code (I keep a reserve for the next release). 
+Maskable interrupts are run in mode 1 so the "i" register is used, too.
+
+The deMon occupies only a small amount of the 2 KiB ROM. Depending on your
+hardware configuration at least 1639 bytes are free for your enhancements.

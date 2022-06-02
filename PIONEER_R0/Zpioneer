@@ -1,0 +1,10 @@
+#!/bin/sh
+# build reZet80 PIONEER
+cd src
+# compile with z80asm v1.8
+z80asm _pioneer.asm -o ../rom/_pioneer.z80 --list=../rom/_pioneer.lst
+cd ..
+# program 2 KiB UVEPROM
+#minipro -v -p m2716@dip24 -w rom/_pioneer.z80
+# program 2 KiB EEPROM
+#minipro -v -p cat28c16a -w rom/_pioneer.z80

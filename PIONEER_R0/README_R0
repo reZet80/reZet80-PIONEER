@@ -1,0 +1,64 @@
+
+reZet80 PIONEER README [last modified: 2021-11-16]
+--------------------------------------------------
+
+Welcome to reZet80!
+reZet80 stands for "Reset me back to the 80s with the Z80".
+reZet80 features a set of retro projects to develop computing and
+arcade systems that resemble the Z80 machines of the late 70s and early 80s.
+All systems are built from scratch and not copies of any other Z80 system.
+The development process includes hardware design and low-level software
+programming in Assembler.
+I started reZet80 back in 2016.
+
+This project involves hardware and software development.
+I will develop and build every single pcb trace and every single bit
+of machine code by myself from scratch.
+DIYIB: Doing it yourself is believing!
+And WYDYIWYG: What you do yourself is what you get!
+
+The reZet80 PIONEER is an expandable modular stand-alone computer system
+that could have been built in the late 70s.
+In its basic configuration the reZet80 PIONEER is equipped with a Z80 CPU
+card and a memory card with 1 KiB of static RAM and 2 KiB of ROM containing
+a simple debug monitor. The maximum amount of RAM and ROM of the memory card
+are 2 KiB and 4 KiB, respectively. The ROM can be upgraded to 14 KiB.
+RAM can be extended to 12 KiB and further increased by the addition of
+dynamic RAM.
+Input and output are implemented by a 20-key keypad and a 6-digit display
+(either 7-segment LEDs or TIL311 LEDs that are more costly).
+The mainboard also includes power supply sockets, on/off switch, reset
+switch and memory and I/O decoding circuitry (8 I/O ports).
+The reZet80 PIONEER is the big sister/brother of the reZet80 SCOUT.
+
+An expansion bus, a video card, a memory cartridge, a sound card based on
+the AY-3-8910 chip and a joystick are planned to be added later.
+Plans for the future also include to enhance the debug monitor and to provide
+a text adventure, at least one arcade clone, an assembler, a disassembler,
+a debugger and a C compiler.
+
+Components that were not available in the 70s will be used as alternatives
+to add value to the system.
+
+The Zilog Z80 was introduced in 1976 in NMOS technology.
+At the same time static memory chips like the 2125 (1K x 1 bit) and the
+2114 (1K x 4 bit) were already available but were very expensive so memory
+was a scarce resource.
+Dynamic RAM chips were more affordable back then. DRAM chips with a single
++5V power supply like Intel's 2118 were available in 1979.
+UV erasable 2 KiB PROMs with a single +5V power supply like Intel's 2716
+were already available by 1977.
+TI's TIL311 dates from 1972.
+General Instrument's AY-3-8910 Programmable Sound Generator (PSG) was
+released in 1978.
+
+reZet80 PIONEER directory hierarchy:
+|- README       : this file
+|- LICENSE      : reZet80 license
+|- about_myself : as it says
+|- PIONEER_R0   : Release 0 (first release)
+|-- doc         : technical specifications
+|-- pix         : pictures
+|-- rom         : ROM images and ROM listings
+|-- sch         : schematics
+|-- src         : source code

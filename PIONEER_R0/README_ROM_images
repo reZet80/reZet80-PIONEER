@@ -1,0 +1,13 @@
+
+ROM images README [last modified: 2021-06-25]
+---------------------------------------------
+
+Many configurations are possible given the installed amount of RAM and the
+alternative displays and keypads but only 2 ROM images are provided. Both
+are built for the default configuration (74C923 keypad and TIL311 display)
+with 1 and 2 KiB RAM, respectively. Other images can be compiled by adjusting
+the hardware configuration in the file "_pioneer.asm".
+ROM listings (".lst" files) are also provided.
+
+"_ROM_1K": 1 KiB RAM, 74C923 keypad, TIL311 display
+"_ROM_2K": 2 KiB RAM, 74C923 keypad, TIL311 display
