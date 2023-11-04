@@ -1,0 +1,17 @@
+
+reZet80 10 KiB ROM card specs [last modified: 2021-11-28]
+---------------------------------------------------------
+
+This is the 10 KiB ROM card for the RXM2 bus (see specs_RXM2_bus).
+
+Five 2 KiB UVEPROM chips produce an amount of 10 KiB ROM.
+
+EEPROM chips can also be used although they were not available in the 70s
+(just in case an easier handling is more important than a 70s feeling).
+
+Bill of materials:
+- reZet80 PIONEER 10 KiB ROM card PCB
+- 40-pin right-angled male connector
+- 5x DIP-24 socket
+- 5x 2716 EPROM (or compatible 2 KiB chips)
+- 6x capacitor 100 nF

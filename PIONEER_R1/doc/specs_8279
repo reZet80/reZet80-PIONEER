@@ -1,0 +1,30 @@
+
+reZet80 8279 PKDI specs [last modified: 2022-04-16]
+---------------------------------------------------
+
+As of R1 the reZet80 PIONEER uses the 8279 PKDI (Programmable Keyboard /
+Display Interface) device to access the keyboard and a 16-digit display.
+
+The 16-digit 7-segment LED display shows 16 alphanumericals ("0"-"9",
+"A"-"Z") and punctuation symbols.
+Please check the 7-segment font (see 7seg_font) for the font patterns.
+The display has been designed for common cathode LED displays.
+
+The 8279 PKDI board provides a 20-key keyboard including special keys
+(ENTER, BACK, ESC and SHIFT).
+
+The reZet80 PIONEER and the 8279 device are connected via the 8279 bus
+(see specs_8279_bus).
+
+Bill of materials:
+- 1x DIP-40 socket (optional)
+- 1x DIP-24 socket (optional)
+- 3x DIP-20 socket (optional)
+- 1x DIP-14 socket (optional)
+- 1x 74LS04 inverter
+- 3x 74LS244 buffer
+- 1x 74LS154 demultiplexer
+- 1x 8279 PKDI (Intel, NEC, Mitsubishi, ...)
+- 20 key switches
+- 16x 1-digit 7-segment common cathode LED display
+- 6x capacitor 100 nF

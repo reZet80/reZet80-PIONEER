@@ -1,0 +1,10 @@
+
+ROM images README [last modified: 2023-01-20]
+---------------------------------------------
+
+The following 2 images are provided:
+
+"_P-R1_1K.z80": reZet80 PIONEER R1, 1 KiB RAM, binary ROM
+"_P-R1_1K.hex": reZet80 PIONEER R1, 1 KiB RAM, Intel hex format
+"_P_R1_2K.z80": reZet80 PIONEER R1, 2 KiB RAM, binary ROM
+"_P_R1_2K.hex": reZet80 PIONEER R1, 2 KiB RAM, Intel hex format

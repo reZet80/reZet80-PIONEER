@@ -1,0 +1,47 @@
+
+reZet80 PIONEER memory specs [last modified: 2021-08-07]
+--------------------------------------------------------
+
+The 64 KiB address space of the Z80 is divided into 4 banks of 16 KiB each:
+0000-3FFF, 4000-7FFF, 8000-BFFF, C000-FFFF.
+
+Only the first 16 KiB bank is reserved for internal PIONEER use.
+The remaining 48 KiB are free to use.
+
+The first bank is divided into 8 regions of 2 KiB each:
+0000-07FF, 0800-0FFF, 1000-17FF, 1800-1FFF, 2000-27FF, 2800-2FFF, 3000-37FF
+and 3800-3FFF.
+
+The first 4 KiB are reserved for ROM.
+
+The following 5 slots can host either ROM or RAM.
+Do not mix up slots with ROM and RAM and make sure that ROM is always
+located at the bottom and RAM at the top of the 16 KiB bank.
+
+The last 2 KiB are provided for RAM and are further subdivided into 2 regions
+of 1 KiB each: 3800-3BFF and 3C00-3FFF.
+
+The 74LS138 and 74LS139 demultiplexers provide the following low-active
+signals:
+- /MEMSEL_0000-3FFF (reserved for internal use)
+- /MEMSEL_4000-7FFF
+- /MEMSEL_8000-BFFF
+- /MEMSEL_C000-FFFF
+- /ROMCS_0000-07FF (reserved for 2 KiB ROM)
+- /ROMCS_0800-0FFF (reserved for 2 KiB ROM)
+- /RXMCS_1000-17FF (reserved for 2 KiB ROM or RAM)
+- /RXMCS_1800-1FFF (reserved for 2 KiB ROM or RAM)
+- /RXMCS_2000-27FF (reserved for 2 KiB ROM or RAM)
+- /RXMCS_2800-2FFF (reserved for 2 KiB ROM or RAM)
+- /RXMCS_3000-37FF (reserved for 2 KiB ROM or RAM)
+- /MEMSEL_3800-3FFF (reserved for internal use
+- /RAMCS_3800-3BFF (reserved for 1 KiB RAM)
+- /RAMCS_3C00-3FFF (reserved for 1 KiB RAM)
+
+All memory addresses are given in hexadecimal notation.
+
+Bill of materials:
+- 2x DIP-16 socket
+- 74LS138 demultiplexer
+- 74LS139 demultiplexer
+- 2x capacitor 100 nF

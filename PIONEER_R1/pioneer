@@ -1,0 +1,14 @@
+#!/bin/sh
+# build reZet80 PIONEER
+cd src
+# compile with rasm v1.7
+rasm _pioneer.asm -ob ../rom/_pioneer.z80
+# provide Intel hex format, too
+bin2hex ../rom/_pioneer.z80 ../rom/_pioneer.hex
+cd ..
+# program 2 KiB UVEPROM
+#minipro -v -p m2716@dip24 -w rom/_pioneer.z80
+# program 2 KiB EEPROM
+#minipro -v -p cat28c16a -w rom/_pioneer.z80
+# program 4 KiB UVEPROM
+#minipro -v -p m2732@dip24 -w rom/_pioneer.z80

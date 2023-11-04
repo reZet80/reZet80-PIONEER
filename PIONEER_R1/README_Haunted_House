@@ -1,0 +1,67 @@
+
+reZet80 Haunted House README [last modified: 2023-01-10]
+--------------------------------------------------------
+
+Welcome to a thrill-packed game of mystery and adventure!
+
+Haunted House
+Generations have passed since the McDaniel family mysteriously disappeared.
+It is said that a stranger came to visit on that cold, autumn day many years
+ago, but no one knows for sure.
+Their house has been vacant for decades now. Its two story image is forlorn
+and looming, visible only from the narrow, winding road that has been
+distorted by vegetation from the surrounding forest. The stone wall that
+encompasses the house is discolored and broken from years of neglect, its
+iron gate rusty and worn by angry seasons. The windows are boarded - the
+house is quiet and contented, not accustomed to visitors. The wind is
+restless today, blowing fallen leaves in all directions. As you walk towards
+the entrance of the house, the wind grows distant and weak. Suddenly, the
+calm and silence is broken by sounds from within the house!
+Do you have the courage to enter?
+
+Haunted House is a simple interactive text adventure horror game for the
+reZet80 PIONEER.
+It was first published in 1979 for the TRS-80 on cassette tape.
+The file size was 6356 bytes (after removing all tape structures).
+I completely rewrote the game in Assembler and implemented some
+simplifications to save ROM space. The game size is now 2236 bytes.
+And I also made modifications to adapt to the 16-character display.
+
+Objectives of the game:
+- Solve the mysteries of the house
+- Survive the hidden dangers
+- Find and explore secret rooms
+- Search for the only escape to get out of the house alive
+
+Don't bother about treasures, there are none to find.
+The game is easy to play: Use "N", "S", "E" and "W" to walk around.
+Type "I" to view your inventory.
+To find out where you are type "L" (look).
+Otherwise, issue simple commands (verb and noun).
+So to open a door enter "OPEN DOOR" or just "O D".
+The descriptive text is short and the dictionary is very limited.
+The exits are not described so if moving in any direction brings you back
+to the same location that direction is not available.
+If you die, the game starts all over again.
+There is no time limit and no score.
+Please feel encouraged to draw a map of the house for yourself.
+Now travel back to the late 70s!
+
+After reset the display reads "HAUNTED HOUSE".
+Press any key to start the game.
+Because only 16 characters can be displayed at the same time sentences have
+to be split on several lines.
+Keep pressing any key until the sentence is finished and you see the prompt.
+The prompt looks like this: "0_".
+Well, "_" is the prompt and "0" shows the active key block.
+The SHIFT key serves the purpose of switching between the blocks of available
+characters and punctuation symbols as only 16 keys are available at a time.
+The first (default) key block (prompt is "0_"):
+"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+After the first SHIFT key press the prompt changes to "G_" and these
+characters are available:
+"G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V"
+After the second SHIFT key press the prompt changes to "W_" and these
+characters and punctuation symbols are available:
+"W", "X", "Y", "Z", " ", ".", ",", "'", "_"
+Pressing the SHIFT key a third time returns you to the default key block.

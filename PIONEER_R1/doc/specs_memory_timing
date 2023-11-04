@@ -1,0 +1,26 @@
+
+reZet80 PIONEER memory timing specs [last modified: 2021-08-07]
+---------------------------------------------------------------
+
+The Z80 uses 1.5 clock cycles for the opcode fetch during the M1 cycle and
+2.5 clock cycles for all other read/write operations from/to ROM/RAM.
+
+The maximum clock frequency for the NMOS Z80 is 2.5 MHz.
+At 2.5 MHz 1 clock cycle takes 400 ns, so 1.5 clock cycles mean 600 ns and
+2.5 clock cycles last for 1000 ns.
+
+The slowest 2716 memory chip has an access time of 450 ns. Adding 80 ns for
+2 LSTTL demultiplexer stages needed to decode the ROM address results in a
+maximum total access time of 530 ns that is about 10% below the 600 ns
+needed for the M1 cycle.
+Nevertheless, if possible use faster 2716 or compatible memory chips.
+
+Decoding the RAM address takes 120 ns, 3 demultiplexer stages.
+The slowest 2114 memory chip has an access time of 450 ns.
+This sums up to 570 ns, far below 1000 ns.
+
+The current reZet80 PIONEER specs:
+- CPU: Z80 clocked at 2 MHz, 500 ns clock cycle
+- RAM: 2114-1 (NEC 1024x4): 300 ns access time
+- ROM: MB8516 (Fujitsu 2716 compatible): 450 ns access time
+- ROM: K573PF2 (Russian 2716 clone): access time unknown

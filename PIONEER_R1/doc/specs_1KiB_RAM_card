@@ -1,0 +1,16 @@
+
+reZet80 1 KiB RAM card specs [last modified: 2021-11-29]
+--------------------------------------------------------
+
+This is the 1 KiB RAM card for the RAM bus (see specs_RAM_bus).
+This card can be used for the reZet80 PIONEER if you own 2125 SRAM memory
+chips but you don't have 2114 chips.
+
+Eight 1024x1 SRAM chips produce an amount of 1 KiB RAM.
+
+Bill of materials:
+- reZet80 PIONEER 1 KiB RAM card PCB
+- 40-pin right-angled male connector
+- 8x DIP-16 socket
+- 8x D2125A SRAM (or compatible 1024x1 chips)
+- 9x capacitor 100 nF

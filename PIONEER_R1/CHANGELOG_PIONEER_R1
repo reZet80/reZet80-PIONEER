@@ -1,0 +1,11 @@
+
+reZet80 PIONEER R1 Changelog [last modified: 2023-01-10]
+--------------------------------------------------------
+
+Changes in reZet80 PIONEER R1 release:
+- Introduced Intel 8279 Programmable Keyboard/Display Interface
+- Extended 7-segment LED display to 16 characters
+- First reZet80 game: Haunted House text adventure
+- Alphanumericals ("0"-"9", "A"-"Z") and punctuation symbols are available
+- Moved to rasm assembler because of support for undocumented instructions
+- Provide binary ROM and Intel hex format

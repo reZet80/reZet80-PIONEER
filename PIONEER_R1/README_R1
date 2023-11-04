@@ -1,0 +1,58 @@
+
+reZet80 PIONEER README [last modified: 2023-01-20]
+--------------------------------------------------
+
+Welcome to reZet80!
+reZet80 stands for "Reset me back to the 80s with the Z80".
+reZet80 features a set of retro projects to develop computing and
+arcade systems that resemble the Z80 machines of the late 70s and early 80s.
+All systems are built from scratch and not copies of any other Z80 system.
+The development process includes hardware design and low-level software
+programming in Assembler. I will develop and build every single pcb trace
+and every single bit of machine code by myself.
+DIYIB: Doing it yourself is believing!
+And WYDYIWYG: What you do yourself is what you get!
+I started reZet80 back in 2016.
+
+The reZet80 PIONEER is an expandable modular stand-alone computer system
+that could have been built in the late 70s.
+In its basic configuration the reZet80 PIONEER is equipped with a Z80 CPU
+card and a memory card with 1 KiB of static RAM and 2 KiB of ROM containing
+a simple debug monitor. The maximum amount of RAM and ROM of the memory card
+are 2 KiB and 4 KiB, respectively. The ROM can be upgraded to 14 KiB.
+RAM can be extended to 12 KiB and further increased by the addition of
+dynamic RAM.
+Input and output are implemented by a 20-key keypad and a 16-digit display.
+The mainboard also includes power supply sockets, on/off switch, reset
+switch and memory and I/O decoding circuitry (8 I/O ports).
+
+The following parts that were available in the mid to late 70s are used in
+this project:
+- Zilog Z80 (CPU, NMOS, 1976)
+- Intel 2114 or compatible (1K x 4 bit static RAM, NMOS, 1976)
+- Intel 2125 or compatible (1K x 1 bit static RAM, NMOS, 1976, alternative to 2114)
+- Intel 2716 or compatible (2 KiB UV erasable EPROM, NMOS, 1977)
+- Intel 8279 (Programmable Keyboard / Display Interface, NMOS, 1976)
+- 74LS04 (inverter, LSTTL, 1975)
+- 74LS138 (memory and I/O decoding, LSTTL, 1975)
+- 74LS139 (memory and I/O decoding, LSTTL, 1975)
+- 74LS154 (display and key decoding, LSTTL, 1976)
+- 74LS244 (display buffer, LSTTL, 1976)
+- 74LS245 (input and output port, LSTTL, 1976)
+- 7-segment display (LED, 1970s)
+
+reZet80 PIONEER directory hierarchy:
+|- README                : this file
+|- LICENSE               : reZet80 license
+|- about_myself          : as it says
+|- PIONEER_R0            : Release 0 (first release)
+|- PIONEER_R1            : Release 1 (this second release)
+|-- doc                  : technical specifications
+|-- pix                  : pictures
+|-- rom                  : ROM images
+|-- sch                  : schematics
+|-- src                  : source code
+|-- Zpioneer             : build script
+|-- README_Haunted_House : a few words about the first reZet80 game
+|-- README_ROM_images    : 2 images in 2 flavours each
+|-- CHANGELOG_PIONEER_R1 : changes since R0
