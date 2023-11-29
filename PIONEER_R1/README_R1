@@ -52,7 +52,7 @@ reZet80 PIONEER directory hierarchy:
 |-- rom                  : ROM images
 |-- sch                  : schematics
 |-- src                  : source code
-|-- Zpioneer             : build script
+|-- pioneer              : build script
 |-- README_Haunted_House : a few words about the first reZet80 game
 |-- README_ROM_images    : 2 images in 2 flavours each
 |-- CHANGELOG_PIONEER_R1 : changes since R0
